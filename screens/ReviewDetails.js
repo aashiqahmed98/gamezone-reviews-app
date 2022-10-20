@@ -1,21 +1,26 @@
-import { StyleSheet, View, Text } from 'react-native'
+import { StyleSheet, View, Text, Image } from 'react-native'
+import Card from '../shared/Card'
+import { globalStyles, images } from '../styles/global.js'
 
 function ReviewDetails(props) {
 	const { navigation, route } = props
 
 	return (
-		<View style={styles.container}>
-			<Text>{route.params.title}</Text>
-			<Text>{route.params.body}</Text>
-			<Text>{route.params.rating}</Text>
+		<View style={globalStyles.container}>
+			<Card>
+				<Text>{route.params.title}</Text>
+				<Text>{route.params.body}</Text>
+				<View style={styles.rating}>
+					<Text>GameZone Rating: </Text>
+					<Image source={images.ratings[route.params.rating]} />
+				</View>
+			</Card>
 		</View>
 	)
 }
 
 const styles = StyleSheet.create({
-	container: {
-		padding: 24,
-	},
+	rating: {},
 })
 
 export default ReviewDetails
