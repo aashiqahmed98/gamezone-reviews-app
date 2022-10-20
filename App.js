@@ -18,9 +18,28 @@ export default function App() {
 	} else {
 		return (
 			<NavigationContainer>
-				<Stack.Navigator initialRouteName='Home'>
-					<Stack.Screen name='Home' component={Home} />
-					<Stack.Screen name='ReviewDetails' component={ReviewDetails} />
+				<Stack.Navigator
+					initialRouteName='Home'
+					screenOptions={{
+						headerStyle: {
+							backgroundColor: '#eee',
+						},
+						headerTintColor: '#444',
+					}}>
+					<Stack.Screen
+						name='Home'
+						component={Home}
+						options={{
+							title: 'GameZone',
+						}}
+					/>
+					<Stack.Screen
+						name='ReviewDetails'
+						component={ReviewDetails}
+						options={({ route }) => ({
+							title: `Review Details - ${route.params.key}`,
+						})}
+					/>
 				</Stack.Navigator>
 			</NavigationContainer>
 		)
