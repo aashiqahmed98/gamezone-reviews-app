@@ -1,9 +1,13 @@
 import { StyleSheet, View, Text } from 'react-native'
 
-function ReviewDetails() {
+function ReviewDetails(props) {
+	const { navigation, route } = props
+
 	return (
 		<View style={styles.container}>
-			<Text>Review Details Screen</Text>
+			<Text>{route.params.title}</Text>
+			<Text>{route.params.body}</Text>
+			<Text>{route.params.rating}</Text>
 		</View>
 	)
 }
