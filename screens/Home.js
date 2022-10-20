@@ -8,6 +8,7 @@ import {
 	TouchableOpacity,
 } from 'react-native'
 import { globalStyles } from '../styles/global.js'
+import Card from '../shared/Card.js'
 
 function Home(props) {
 	const [reviews, setReviews] = useState([
@@ -38,7 +39,9 @@ function Home(props) {
 				renderItem={({ item }) => (
 					<TouchableOpacity
 						onPress={() => props.navigation.navigate('ReviewDetails', item)}>
-						<Text style={globalStyles.titleText}>{item.title}</Text>
+						<Card>
+							<Text style={globalStyles.titleText}>{item.title}</Text>
+						</Card>
 					</TouchableOpacity>
 				)}
 			/>
