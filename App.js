@@ -1,11 +1,8 @@
+import 'react-native-gesture-handler'
 import { useState } from 'react'
 import * as Font from 'expo-font'
-import Home from './screens/Home'
-import ReviewDetails from './screens/ReviewDetails'
 import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-
-const Stack = createNativeStackNavigator()
+import RootNavigator from './routes/Drawer'
 
 export default function App() {
 	const [loaded] = Font.useFonts({
@@ -18,29 +15,7 @@ export default function App() {
 	} else {
 		return (
 			<NavigationContainer>
-				<Stack.Navigator
-					initialRouteName='Home'
-					screenOptions={{
-						headerStyle: {
-							backgroundColor: '#eee',
-						},
-						headerTintColor: '#444',
-					}}>
-					<Stack.Screen
-						name='Home'
-						component={Home}
-						options={{
-							title: 'GameZone',
-						}}
-					/>
-					<Stack.Screen
-						name='ReviewDetails'
-						component={ReviewDetails}
-						options={({ route }) => ({
-							title: `Review Details - ${route.params.key}`,
-						})}
-					/>
-				</Stack.Navigator>
+				<RootNavigator />
 			</NavigationContainer>
 		)
 	}
