@@ -1,6 +1,11 @@
 import { useState } from 'react'
 import * as Font from 'expo-font'
 import Home from './screens/Home'
+import ReviewDetails from './screens/ReviewDetails'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+
+const Stack = createNativeStackNavigator()
 
 export default function App() {
 	const [loaded] = Font.useFonts({
@@ -11,6 +16,13 @@ export default function App() {
 	if (!loaded) {
 		return null
 	} else {
-		return <Home />
+		return (
+			<NavigationContainer>
+				<Stack.Navigator initialRouteName='Home'>
+					<Stack.Screen name='Home' component={Home} />
+					<Stack.Screen name='ReviewDetails' component={ReviewDetails} />
+				</Stack.Navigator>
+			</NavigationContainer>
+		)
 	}
 }
