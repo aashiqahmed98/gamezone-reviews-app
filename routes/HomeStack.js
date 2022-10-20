@@ -19,6 +19,7 @@ function HomeStack() {
 				component={Home}
 				options={{
 					title: 'GameZone',
+					headerShown: false,
 				}}
 			/>
 			<Stack.Screen
