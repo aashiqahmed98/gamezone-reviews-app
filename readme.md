@@ -4,4 +4,5 @@
     - Passing data from one page to another.
     - Customized header styles.
 - Used Drawer Navigation over all the other navigators.
-- Add images
+- Added images
+    - Background image for Drawer header.
