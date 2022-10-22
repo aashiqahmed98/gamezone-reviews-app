@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useId } from 'react'
 import {
 	StyleSheet,
 	View,
@@ -7,6 +7,8 @@ import {
 	FlatList,
 	TouchableOpacity,
 	Modal,
+	TouchableWithoutFeedback,
+	Keyboard,
 } from 'react-native'
 import { globalStyles } from '../styles/global.js'
 import Card from '../shared/Card.js'
@@ -19,35 +21,46 @@ function Home(props) {
 			title: 'Zelda, Breath of Fresh Air',
 			rating: 5,
 			body: 'lorem ipsum',
-			key: '1',
+			id: '1',
 		},
 		{
 			title: 'Gotta Catch Them All (again)',
 			rating: 4,
 			body: 'lorem ipsum',
-			key: '2',
+			id: '2',
 		},
 		{
 			title: 'Not So "Final" Fantasy',
 			rating: 3,
 			body: 'lorem ipsum',
-			key: '3',
+			id: '3',
 		},
 	])
 	const [isModalOpen, setIsModalOpen] = useState(false)
+	const id = useId()
+
+	const addReview = (review) => {
+		review.id = id
+		setReviews((prevState) => {
+			return [review, ...prevState]
+		}, console.log(reviews))
+		setIsModalOpen(false)
+	}
 
 	return (
 		<View style={globalStyles.container}>
 			<Modal visible={isModalOpen} animationType='slide'>
-				<View style={styles.modalContent}>
-					<MaterialIcons
-						style={[styles.modalToggle, styles.modalClose]}
-						name='close'
-						size={24}
-						onPress={() => setIsModalOpen(false)}
-					/>
-					<ReviewForm />
-				</View>
+				<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+					<View style={styles.modalContent}>
+						<MaterialIcons
+							style={[styles.modalToggle, styles.modalClose]}
+							name='close'
+							size={24}
+							onPress={() => setIsModalOpen(false)}
+						/>
+						<ReviewForm addReview={addReview} />
+					</View>
+				</TouchableWithoutFeedback>
 			</Modal>
 
 			<MaterialIcons
@@ -66,6 +79,7 @@ function Home(props) {
 						</Card>
 					</TouchableOpacity>
 				)}
+				keyExtractor={(item) => item.id}
 			/>
 		</View>
 	)

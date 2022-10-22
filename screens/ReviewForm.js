@@ -3,13 +3,14 @@ import { globalStyles } from '../styles/global.js'
 import { Formik } from 'formik'
 import { TextInput } from 'react-native-gesture-handler'
 
-function ReviewForm() {
+function ReviewForm(props) {
 	return (
 		<View style={globalStyles.container}>
 			<Formik
 				initialValues={{ title: '', body: '', rating: '' }}
-				onSubmit={(values) => {
-					console.log(values)
+				onSubmit={(values, action) => {
+					props.addReview(values)
+					action.resetForm()
 				}}>
 				{(props) => (
 					<View>

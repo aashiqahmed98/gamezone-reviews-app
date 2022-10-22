@@ -26,7 +26,7 @@ function HomeStack() {
 				name='ReviewDetails'
 				component={ReviewDetails}
 				options={({ route }) => ({
-					title: `Review Details - ${route.params.key}`,
+					title: `Review Details - ${route.params.id}`,
 				})}
 			/>
 		</Stack.Navigator>
