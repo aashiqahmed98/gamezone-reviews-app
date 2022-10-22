@@ -6,9 +6,11 @@ import {
 	Button,
 	FlatList,
 	TouchableOpacity,
+	Modal,
 } from 'react-native'
 import { globalStyles } from '../styles/global.js'
 import Card from '../shared/Card.js'
+import { MaterialIcons } from '@expo/vector-icons'
 
 function Home(props) {
 	const [reviews, setReviews] = useState([
@@ -31,9 +33,28 @@ function Home(props) {
 			key: '3',
 		},
 	])
+	const [isModalOpen, setIsModalOpen] = useState(false)
 
 	return (
 		<View style={globalStyles.container}>
+			<Modal visible={isModalOpen} animationType='slide'>
+				<View style={styles.modalContent}>
+					<MaterialIcons
+						style={[styles.modalToggle, styles.modalClose]}
+						name='close'
+						size={24}
+						onPress={() => setIsModalOpen(false)}
+					/>
+					<Text>Hello from the modal</Text>
+				</View>
+			</Modal>
+
+			<MaterialIcons
+				style={styles.modalToggle}
+				name='add'
+				size={24}
+				onPress={() => setIsModalOpen(true)}
+			/>
 			<FlatList
 				data={reviews}
 				renderItem={({ item }) => (
@@ -50,3 +71,21 @@ function Home(props) {
 }
 
 export default Home
+
+const styles = StyleSheet.create({
+	modalToggle: {
+		marginBottom: 10,
+		padding: 10,
+		borderWidth: 1,
+		borderColor: '#f2f2f2',
+		borderRadius: 10,
+		alignSelf: 'center',
+	},
+	modalClose: {
+		marginTop: 20,
+		marginBottom: 0,
+	},
+	modalContent: {
+		flex: 1,
+	},
+})
