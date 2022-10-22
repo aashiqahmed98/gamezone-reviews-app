@@ -11,6 +11,7 @@ import {
 import { globalStyles } from '../styles/global.js'
 import Card from '../shared/Card.js'
 import { MaterialIcons } from '@expo/vector-icons'
+import ReviewForm from './ReviewForm.js'
 
 function Home(props) {
 	const [reviews, setReviews] = useState([
@@ -45,7 +46,7 @@ function Home(props) {
 						size={24}
 						onPress={() => setIsModalOpen(false)}
 					/>
-					<Text>Hello from the modal</Text>
+					<ReviewForm />
 				</View>
 			</Modal>
 
