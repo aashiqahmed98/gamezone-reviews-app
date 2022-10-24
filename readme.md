@@ -6,3 +6,4 @@
 - Used Drawer Navigation over all the other navigators.
 - Added images
     - Background image for Drawer header.
+- Added Forms and validation using `Formik` and `yup`.
